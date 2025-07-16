@@ -158,7 +158,7 @@ function draw(progress) {
     );
 
     // snake
-    ctx.fillStyle = 'lightgreen';
+    ctx.fillStyle = 'skyblue';
     for (let i = 0; i < snake.length; i++) {
         const prev = prevSnake[i] || snake[i], curr = snake[i];
         let dx = curr.x - prev.x, dy = curr.y - prev.y;
