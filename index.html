@@ -1,140 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Your Name</title>
-  <style>
-    /* make body fill screen and hide scrollbars */
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100%;
-    }
-
-    /* full‑screen canvas behind everything */
-    #snakeCanvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-    }
-
-    /* your name centered, big, and clickable events pass through */
-    h1 {
-      position: relative;
-      z-index: 1;
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      font-size: 4em;
-      color: #333;
-      pointer-events: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Ricky Rios</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
 </head>
+
 <body>
+    <!-- this div is your ghost‑fruit overlay -->
+    <div id="ghostFruit"></div>
 
-  <canvas id="snakeCanvas"></canvas>
-  <h1>Your Name</h1>
+    <!-- this is the canvas where the snake & real fruit draw -->
+    <canvas id="snakeCanvas"></canvas>
 
-  <script>
-    const canvas = document.getElementById('snakeCanvas');
-    const ctx = canvas.getContext('2d');
+    <!-- this is your name box -->
+    <h1>Ricky Rios</h1>
 
-    // grid setup
-    let cellSize = 20;
-    let cols, rows;
-
-    // snake and fruit state
-    let snake = [];
-    let dir = { x: 1, y: 0 };
-    let fruits = [];
-    let growNext = false;
-
-    // initialize sizes and start loop
-    function init() {
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-      resetSnake();
-      // randomize direction every 2s
-      setInterval(() => {
-        const dirs = [
-          { x: 1, y: 0 },
-          { x: -1, y: 0 },
-          { x: 0, y: 1 },
-          { x: 0, y: -1 }
-        ];
-        dir = dirs[Math.floor(Math.random() * dirs.length)];
-      }, 2000);
-
-      canvas.addEventListener('click', e => {
-        const rect = canvas.getBoundingClientRect();
-        const x = Math.floor((e.clientX - rect.left) / cellSize);
-        const y = Math.floor((e.clientY - rect.top) / cellSize);
-        fruits.push({ x, y });
-      });
-
-      setInterval(gameLoop, 100);
-    }
-
-    function resizeCanvas() {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-      cols = Math.floor(canvas.width  / cellSize);
-      rows = Math.floor(canvas.height / cellSize);
-    }
-
-    function resetSnake() {
-      snake = [{ x: Math.floor(cols/2), y: Math.floor(rows/2) }];
-      dir = { x: 1, y: 0 };
-      fruits = [];
-    }
-
-    function gameLoop() {
-      // move head
-      const head = {
-        x: (snake[0].x + dir.x + cols) % cols,
-        y: (snake[0].y + dir.y + rows) % rows
-      };
-      snake.unshift(head);
-
-      // check for fruit
-      for (let i = 0; i < fruits.length; i++) {
-        if (head.x === fruits[i].x && head.y === fruits[i].y) {
-          fruits.splice(i, 1);
-          growNext = true;
-          break;
-        }
-      }
-
-      // remove tail if not growing
-      if (!growNext) snake.pop();
-      growNext = false;
-
-      // draw background
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // draw fruits
-      ctx.fillStyle = 'red';
-      fruits.forEach(f => {
-        ctx.fillRect(f.x * cellSize, f.y * cellSize, cellSize, cellSize);
-      });
-
-      // draw snake
-      ctx.fillStyle = 'green';
-      snake.forEach(segment => {
-        ctx.fillRect(segment.x * cellSize, segment.y * cellSize, cellSize, cellSize);
-      });
-    }
-
-    // start it up
-    init();
-  </script>
+    <script src="snake.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,64 @@
+/* reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* full‑screen canvas */
+#snakeCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+/* tight, centered box around your name */
+h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: inline-block;
+    font-family: 'Apercu Mono Pro', serif;
+    font-size: 4em;
+    color: #333;
+
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.2em 0.5em;
+    border: 3px solid #333;
+    border-radius: 8px;
+
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ghost‑fruit hint (always visible, less opaque) */
+/* ghost‑fruit hint overlay */
+#ghostFruit {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: red;
+    pointer-events: none;
+    opacity: 0.2;
+    animation: pulse 1.5s ease-in-out infinite;
+    z-index: 1;      /* under the h1 */
+    display: none;   /* ← hide until first mousemove */
+  }
+  
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}

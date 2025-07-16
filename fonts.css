@@ -1,0 +1,28 @@
+/* Font definitions for Apercu Mono Pro */
+@font-face {
+    font-family: 'Apercu Mono Pro';
+    src: url('font/ApercuMonoProRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Apercu Mono Pro';
+    src: url('font/ApercuMonoProLight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Apercu Mono Pro';
+    src: url('font/ApercuMonoProMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Apercu Mono Pro';
+    src: url('font/ApercuMonoProBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
